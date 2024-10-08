@@ -25,7 +25,7 @@ pipeline {
         sshagent (credentials: ['ec2-ssh-credentials']) {
             sh '''
             ssh -o StrictHostKeyChecking=no ubuntu@54.211.23.146 << EOF
-            cd /home/ubuntu/simple-node-app
+            cd /home/ubuntu/simple-node-app/simple-node-app
             if git pull origin main; then
                 npm install
                 pm2 restart all || pm2 start index.js --name "simple-node-app"
