@@ -21,19 +21,19 @@ pipeline {
         }
 
         stage('Deploy to EC2') {
-            steps {
-                sshagent (credentials: ['ec2-ssh-credentials']) {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no ubuntu@54.211.23.146  << EOF
-                    cd /home/ubuntu/simple-node-app
-                    git pull origin main
-                    npm install
-                    pm2 restart all || pm2 start index.js --name "simple-node-app"
-                    EOF
-                    '''
-                }
-            }
+    steps {
+        sshagent (credentials: ['ec2-ssh-credentials']) {
+            sh '''
+            ssh -o StrictHostKeyChecking=no ubuntu@54.211.23.146 << EOF
+            cd /home/ubuntu/simple-node-app
+            git pull origin main
+            npm install
+            pm2 restart all || pm2 start index.js --name "simple-node-app"
+            EOF
+            '''
         }
+    }
+}
     }
 
     post {
