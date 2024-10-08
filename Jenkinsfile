@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sshagent (credentials: ['ec2-ssh-credentials']) {
                     sh '''
-                    ssh -o StrictHostKeyChecking=no ubuntu@<EC2-IP-Address> << EOF
+                    ssh -o StrictHostKeyChecking=no ubuntu@54.211.23.146  << EOF
                     cd /path-to-your-app-directory/
                     git pull origin main
                     npm install
